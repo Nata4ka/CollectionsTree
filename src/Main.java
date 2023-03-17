@@ -1,23 +1,21 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Main {
 
-
-    private static List<Person> peopleList() {
-        List<Person> person = new ArrayList<>();
-        person.add(new Person("Димидов", "Артем", 31));
-        person.add(new Person("Орейро - Кас", "Наталья", 38));
-        person.add(new Person("Феллини", "Федерико", 51));
-        person.add(new Person("Лаврова - Ушакова", "Светлана", 25));
-        return person;
-    }
-
     public static void main(String[] args) {
-        List<Person> person = peopleList();
-        Collections.sort(person, new NoblePersonComparator(2));
-        System.out.println(person);
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("Димидов", "Артем", 31));
+        persons.add(new Person("Орейро - Кас", "Наталья", 38));
+        persons.add(new Person("Феллини", "Федерико", 51));
+        persons.add(new Person("Лаврова - Ушакова", "Светлана", 25));
+        persons.add(new Person("Уварова - Оденцова", "Кристина", 15));
+        persons.add(new Person("Ларина-Романова", "Любовь", 16));
+
+        Predicate<Person> predicate = person -> person.getAge()<18;
+        persons.removeIf(predicate);
+        System.out.println(persons);
 
     }
 }
